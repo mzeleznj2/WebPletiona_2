@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbNautilusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OPERATORS">
+          <Key>
+            <PropertyRef Name="idRec" />
+          </Key>
+          <Property Name="OpCode" Type="int" />
+          <Property Name="FirstName" Type="char" MaxLength="30" />
+          <Property Name="LastName" Type="char" MaxLength="30" />
+          <Property Name="RespoCode" Type="char" MaxLength="30" />
+          <Property Name="idRec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TUBLAFermi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="UniqueID" Type="char" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TUBLAInfo">
+          <Key>
+            <PropertyRef Name="idInfo" />
+          </Key>
+          <Property Name="idInfo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="informacija" Type="char" MaxLength="240" />
+          <Property Name="tip" Type="int" />
+          <Property Name="datum" Type="datetime" />
+          <Property Name="tip1" Type="int" />
+          <Property Name="tip2" Type="text" />
+          <Property Name="imageName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="dbNautilusModelStoreContainer">
+          <EntitySet Name="OPERATORS" EntityType="Self.OPERATORS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TUBLAFermi" EntityType="Self.TUBLAFermi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TUBLAInfo" EntityType="Self.TUBLAInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbNautilusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TUBLAFermi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="UniqueID" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="dbNautilusEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TUBLAFermi" EntityType="Self.TUBLAFermi" />
+          <EntitySet Name="OPERATORS" EntityType="dbNautilusModel.OPERATORS" />
+          <EntitySet Name="TUBLAInfo" EntityType="dbNautilusModel.TUBLAInfo" />
+        </EntityContainer>
+        <EntityType Name="OPERATORS">
+          <Key>
+            <PropertyRef Name="idRec" />
+          </Key>
+          <Property Name="OpCode" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="RespoCode" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="idRec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="TUBLAInfo">
+          <Key>
+            <PropertyRef Name="idInfo" />
+          </Key>
+          <Property Name="idInfo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="informacija" Type="String" MaxLength="240" FixedLength="true" Unicode="false" />
+          <Property Name="tip" Type="Int32" />
+          <Property Name="datum" Type="DateTime" Precision="3" />
+          <Property Name="tip1" Type="Int32" />
+          <Property Name="tip2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="imageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbNautilusModelStoreContainer" CdmEntityContainer="dbNautilusEntities1">
+          <EntitySetMapping Name="TUBLAFermi">
+            <EntityTypeMapping TypeName="dbNautilusModel.TUBLAFermi">
+              <MappingFragment StoreEntitySet="TUBLAFermi">
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPERATORS">
+            <EntityTypeMapping TypeName="dbNautilusModel.OPERATORS">
+              <MappingFragment StoreEntitySet="OPERATORS">
+                <ScalarProperty Name="idRec" ColumnName="idRec" />
+                <ScalarProperty Name="RespoCode" ColumnName="RespoCode" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="OpCode" ColumnName="OpCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TUBLAInfo">
+            <EntityTypeMapping TypeName="dbNautilusModel.TUBLAInfo">
+              <MappingFragment StoreEntitySet="TUBLAInfo">
+                <ScalarProperty Name="imageName" ColumnName="imageName" />
+                <ScalarProperty Name="tip2" ColumnName="tip2" />
+                <ScalarProperty Name="tip1" ColumnName="tip1" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="tip" ColumnName="tip" />
+                <ScalarProperty Name="informacija" ColumnName="informacija" />
+                <ScalarProperty Name="idInfo" ColumnName="idInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
