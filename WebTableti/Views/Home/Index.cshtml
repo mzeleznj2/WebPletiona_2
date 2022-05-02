@@ -77,10 +77,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <button style="height: 160px; margin-bottom: 20px; font-size: 20px;" type="button" class="btn btn-primary btn-group-lg btn-block" onclick="location.href='@Url.Action("About", "Home")  '">  Grupa 1 - Doppio </button>
+                <button style="height: 120px; width: 80%; margin-bottom: 20px; font-size: 20px;" type="button" class="btn btn-primary btn-group-lg btn-block" onclick="location.href='@Url.Action("About", "Home")  '">  Grupa 1 - Doppio </button>
             </div>
             <div class="col-md-4 offset-md-4">
-                <button style="height: 160px; margin-bottom: 20px; font-size: 20px;" type="button" class="btn btn-primary btn-group-lg btn-block " onclick="location.href='@Url.Action("About2", "Home")'">  Grupa 2 - Mono  </button>
+                <button style="height: 120px; width: 80%; margin-bottom: 20px; font-size: 20px;" type="button" class="btn btn-primary btn-group-lg btn-block " onclick="location.href='@Url.Action("About2", "Home")'">  Grupa 2 - Mono  </button>
             </div>
         </div>
     </div>
@@ -92,40 +92,44 @@
 
 
     @foreach (var item in Model)
-    {
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">
-            @Html.DisplayFor(modelItem => item.datum) 
-        <h5>
-                @{
-                    string stil;
-                    if (item.tip == 1)
-                    {
-                        stil = "card-text alert alert-success";
-                    }
-                    else
-                    {
-                        stil = "card-text alert alert-danger";
-                    }
-                }
-                <div class='@stil'>
-                    @Html.DisplayFor(modelItem => item.informacija)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <b> @Html.DisplayFor(modelItem => item.datum) </b>
+                    <h5>
+                            @{
+                                string stil;
+                                string span;
+                                if (item.tip == 1)
+                                {
+                                    stil = "card-text alert alert-success ";
+                                    span = "glyphicon glyphicon-info-sign ";
+                                }
+                                else
+                                {
+                                    stil = "card-text alert alert-danger ";
+                                    span = "glyphicon glyphicon-warning-sign";
+                                }
+                            }
+                            <div class='@stil'>
+                                <span class='@span'> @Html.DisplayFor(modelItem => item.informacija)</span>
+                            </div>
+
+                            @{
+                                if (item.imageName != "" && item.imageName != null)
+                                {
+                                    <img class="card-img-top" src="~/Uploads/@item.imageName" alt="" width="300" height="300">
+
+
+                                }
+                            }
+                    <hr />
                 </div>
-
-                @{
-                    if (item.imageName != "" && item.imageName != null)
-                    {
-                        <img class="card-img-top" src="~/Uploads/@item.imageName" alt="">
-
-                    }
-                }
-        <hr />
-    </div>
-</div>
+            </div>
    
 
-    }
+        }
 
 </body>
 </html>

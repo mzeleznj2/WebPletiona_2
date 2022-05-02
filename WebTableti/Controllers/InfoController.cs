@@ -15,13 +15,11 @@ namespace WebTableti.Controllers
         
         public ActionResult Index()
         {        
-
            return View();
         }
 
         public ActionResult PrikažiInfo()
         {        
-
             return View(context.TUBLAInfo.ToList());
         }
 

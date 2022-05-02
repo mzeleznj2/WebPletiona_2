@@ -24,6 +24,10 @@
             background-color: deeppink;
             color: white;
         }
+        .fermo07 {
+            background-color: yellow;
+            color: black;
+        }
     </style>
 
 </head>
@@ -40,7 +44,7 @@
         <br />
 
         <button disabled style="background-color:white;"> <b>Fermo 50002: @ViewBag.brojac2</b> </button> 
-        <button class="fermo" disabled> <b>Fermo 50007: @ViewBag.brojac7</b> </button>     
+        <button class="fermo07" disabled> <b>Fermo 50007: @ViewBag.brojac7</b> </button>     
         <button class="fermo" disabled> <b>Fermo 50008: @ViewBag.brojac8</b></button> 
         <br />
         <hr />
@@ -82,9 +86,15 @@
                                     Detalji: @dr["brojac"]
                                 </button>
                             </td>
-                            @if (Convert.ToInt32(dr["LastStopCode"]) == 50008 || Convert.ToInt32(dr["LastStopCode"]) == 50007)
+                            @if (Convert.ToInt32(dr["LastStopCode"]) == 50008)
                             {
                                 <td class="fermo">
+                                    @dr["LastStopCode"]
+                                </td>
+                            }
+                            else if (Convert.ToInt32(dr["LastStopCode"]) == 50007)
+                            { 
+                                <td class="fermo07">
                                     @dr["LastStopCode"]
                                 </td>
                             }
