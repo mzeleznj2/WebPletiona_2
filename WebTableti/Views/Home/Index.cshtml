@@ -8,8 +8,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
 
-    <title>Hystory</title>
-    <br />
+    @*<title>Hystory</title>*@
+ 
 
     <style>
     #slika {
@@ -72,15 +72,18 @@
             <h2 class="col-sm-6">Izbornik</h2>
         </div>*@
 
-
+    <br />
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <button style="height: 120px; width: 80%; margin-bottom: 20px; font-size: 20px;" type="button" class="btn btn-primary btn-group-lg btn-block" onclick="location.href='@Url.Action("About", "Home")  '">  Grupa 1 - Doppio </button>
             </div>
-            <div class="col-md-4 offset-md-4">
+            <div class="col-md-4">
                 <button style="height: 120px; width: 80%; margin-bottom: 20px; font-size: 20px;" type="button" class="btn btn-primary btn-group-lg btn-block " onclick="location.href='@Url.Action("About2", "Home")'">  Grupa 2 - Mono  </button>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <button style="height: 120px; width: 80%; margin-bottom: 20px; font-size: 20px;" type="button" class="btn btn-primary btn-group-lg btn-block " onclick="location.href='@Url.Action("About3", "Home")'">  Grupa 3 - Collant </button>
             </div>
         </div>
     </div>
@@ -97,7 +100,7 @@
                 <div class="card-body">
                     <h5 class="card-title">
                         <b> @Html.DisplayFor(modelItem => item.datum) </b>
-                    <h5>
+                    </h5>
                             @{
                                 string stil;
                                 string span;

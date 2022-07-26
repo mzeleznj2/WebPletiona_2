@@ -35,20 +35,49 @@ namespace WebTableti.Controllers
    
         }
 
+       
         //Grupa1
         public ActionResult About()
         {
             Podaci podaci = new Podaci();
             DataTable dtPodaci = podaci.NapuniGrid();
+                       
+            
+            List<Brojac> listaBrojac = new List<Brojac>();
+            DataTable dtPodaciBrojac = podaci.brojacGrupa1();
 
-            string email = "grupa1.nautilus@tubla.local";
+            foreach (DataRow dr in dtPodaciBrojac.Rows)
+            {
 
-            ViewBag.Brojac2 = podaci.vratiSumuBrojac2(email);
-            ViewBag.Brojac7 = podaci.vratiSumuBrojac7(email);
-            ViewBag.Brojac8 = podaci.vratiSumuBrojac8(email);
+                listaBrojac = dtPodaciBrojac.AsEnumerable().Select
+                (x => new Brojac
+                {
+                    LastStopCode = Convert.ToInt32(x["LastStopCode"]),
+                    brojac = Convert.ToInt32(x["Brojac"])                   
+                }).ToList();
+            }
+                                  
+            var brojac2 = from r in listaBrojac
+                          where r.LastStopCode == 50002
+                          select r.brojac;
+
+            var brojac7 = from r in listaBrojac
+                          where r.LastStopCode == 50007
+                          select r.brojac;
+
+            var brojac8 = from r in listaBrojac
+                          where r.LastStopCode == 50008
+                          select r.brojac;
+
+            ViewBag.Brojac2 = Convert.ToInt32(brojac2.FirstOrDefault());
+            ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
+            ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
+
 
             return View("About", dtPodaci);
+
         }
+
 
         //Grupa2
         public ActionResult About2()
@@ -56,16 +85,83 @@ namespace WebTableti.Controllers
             Podaci podaci = new Podaci();
             DataTable dtPodaci = podaci.NapuniGrid2();
 
-            string email = "grupa2.nautilus@tubla.local";
+            List<Brojac> listaBrojac = new List<Brojac>();
+            DataTable dtPodaciBrojac = podaci.brojacGrupa2();
 
-            ViewBag.Brojac2 = podaci.vratiSumuBrojac2(email);
-            ViewBag.Brojac7 = podaci.vratiSumuBrojac7(email);
-            ViewBag.Brojac8 = podaci.vratiSumuBrojac8(email);
+            foreach (DataRow dr in dtPodaciBrojac.Rows)
+            {
+
+                listaBrojac = dtPodaciBrojac.AsEnumerable().Select
+                (x => new Brojac
+                {
+                    LastStopCode = Convert.ToInt32(x["LastStopCode"]),
+                    brojac = Convert.ToInt32(x["Brojac"])
+                }).ToList();
+            }
+
+            var brojac2 = from r in listaBrojac
+                          where r.LastStopCode == 50002
+                          select r.brojac;
+
+            var brojac7 = from r in listaBrojac
+                          where r.LastStopCode == 50007
+                          select r.brojac;
+
+            var brojac8 = from r in listaBrojac
+                          where r.LastStopCode == 50008
+                          select r.brojac;
+
+            ViewBag.Brojac2 = Convert.ToInt32(brojac2.FirstOrDefault());
+            ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
+            ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
+        
 
             return View("About2", dtPodaci);
         }
-           
-     
+
+
+        //Grupa3
+        public ActionResult About3()
+        {
+            Podaci podaci = new Podaci();
+            DataTable dtPodaci = podaci.NapuniGrid3();
+
+            List<Brojac> listaBrojac = new List<Brojac>();
+            DataTable dtPodaciBrojac = podaci.brojacGrupa3();
+
+            foreach (DataRow dr in dtPodaciBrojac.Rows)
+            {
+
+                listaBrojac = dtPodaciBrojac.AsEnumerable().Select
+                (x => new Brojac
+                {
+                    LastStopCode = Convert.ToInt32(x["LastStopCode"]),
+                    brojac = Convert.ToInt32(x["Brojac"])
+                }).ToList();
+            }
+
+            var brojac2 = from r in listaBrojac
+                          where r.LastStopCode == 50002
+                          select r.brojac;
+
+            var brojac7 = from r in listaBrojac
+                          where r.LastStopCode == 50007
+                          select r.brojac;
+
+            var brojac8 = from r in listaBrojac
+                          where r.LastStopCode == 50008
+                          select r.brojac;
+
+            ViewBag.Brojac2 = Convert.ToInt32(brojac2.FirstOrDefault());
+            ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
+            ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
+
+
+            return View("About3", dtPodaci);
+        }
+
+
+
         public ActionResult Details(int kod)
         {
             DataTable dtPovijest = new DataTable();
@@ -135,6 +231,35 @@ namespace WebTableti.Controllers
             return RedirectToAction("About2", "Home");
         }
 
+
+        //Grupa 3
+        public ActionResult ChangeStatus3(string kod)
+        {
+            using (var context = new dbNautilusEntities1())
+            {
+                if (context.TUBLAFermi.Any(o => o.UniqueID == kod))
+                {
+                    var status = context.TUBLAFermi.OrderBy(a => a.ID).LastOrDefault(a => a.UniqueID == kod);
+                    status.Status = true;
+                    context.SaveChanges();
+                }
+                else
+                {
+                    var Stato = new TUBLAFermi()
+                    {
+                        UniqueID = kod,
+                        Status = true
+                    };
+                    context.TUBLAFermi.Add(Stato);
+                    context.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("About3", "Home");
+        }
+
+
+
         //Grupa 1
         public ActionResult OdbaciStatus(string kod) {
             using (var context = new dbNautilusEntities1())
@@ -162,6 +287,19 @@ namespace WebTableti.Controllers
             return RedirectToAction("About2", "Home");
         }
 
+
+        //Grupa 3
+        public ActionResult OdbaciStatus3(string kod)
+        {
+            using (var context = new dbNautilusEntities1())
+            {
+                var status = context.TUBLAFermi.Where(a => a.UniqueID == kod).OrderByDescending(p => p.ID).FirstOrDefault();
+                context.TUBLAFermi.Remove(status);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("About3", "Home");
+        }
 
 
         //[HttpPost]

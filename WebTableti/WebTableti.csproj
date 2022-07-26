@@ -166,6 +166,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Brojac.cs" />
     <Compile Include="Models\Podaci.cs" />
     <Compile Include="Models\PodaciDetalji.cs" />
     <Compile Include="OPERATORS.cs">
@@ -252,6 +253,7 @@
     <Content Include="Views\Info\Index.cshtml" />
     <Content Include="Views\Info\PrikažiInfo.cshtml" />
     <Content Include="Views\Shared\_LayoutMano.cshtml" />
+    <Content Include="Views\Home\About3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

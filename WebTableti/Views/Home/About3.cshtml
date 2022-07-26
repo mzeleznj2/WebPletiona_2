@@ -11,7 +11,6 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="refresh" content="30">
-
     <title> Fermi </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -20,10 +19,12 @@
             background-color: firebrick;
             color: white;
         }
+
         .fermo {
             background-color: deeppink;
             color: white;
         }
+
         .fermo07 {
             background-color: yellow;
             color: black;
@@ -43,12 +44,11 @@
         </div>
         <br />
 
-        <button disabled style="background-color:white;"> <b>Fermo 50002: @ViewBag.Brojac2</b> </button> 
-        <button class="fermo07" disabled> <b>Fermo 50007: @ViewBag.Brojac7</b> </button>     
-        <button class="fermo" disabled> <b>Fermo 50008: @ViewBag.Brojac8</b></button> 
+        <button disabled style="background-color:white;"> <b>Fermo 50002: @ViewBag.Brojac2</b> </button>
+        <button class="fermo07" disabled> <b>Fermo 50007: @ViewBag.Brojac7</b> </button>
+        <button class="fermo" disabled> <b>Fermo 50008: @ViewBag.Brojac8</b></button>
         <br />
         <hr />
-        
 
         @{
             if (Model.Rows.Count > 0)
@@ -79,7 +79,6 @@
                     </thead>
                     @foreach (DataRow dr in Model.Rows)
                     {
-                        @*<tr id="redak" border="1" onclick="location.href = '@(Url.Action("Details", "Home", new { kod = @dr["MachCode"] }))'">*@
                         <tr>
                             <td>
                                 <button type="button" class="btn btn-info" onclick="location.href='@(Url.Action("Details", "Home", new { kod = @dr["MachCode"] }))'">
@@ -93,7 +92,7 @@
                                 </td>
                             }
                             else if (Convert.ToInt32(dr["LastStopCode"]) == 50007)
-                            { 
+                            {
                                 <td class="fermo07">
                                     @dr["LastStopCode"]
                                 </td>
@@ -107,17 +106,20 @@
                             @if (dr["Status"] != System.DBNull.Value)
                             {
                                 <td class="mystyle">
-                                    @dr["DateRec"] <br />
+                                    @dr["DateRec"]<br />
                                     <b> @dr["TrajanjeZastoja"] </b>
                                 </td>
                                 <td class="mystyle">
-                                    <b>@dr["MachCode"].ToString()</b> <br />
+                                    <b>@dr["MachCode"].ToString()</b>  <br />
                                     @dr["RoomCode"]
                                 </td>
                                 <td class="mystyle">@dr["DescrizioneFermo"].ToString() </td>
+                                @*<td> <button class="btn btn-danger" disabled> Preuzeto </button></td>*@
                                 <td>
                                     <button class="btn btn-danger" disabled> Preuzeto </button>
-                                    <button type="button" id="dodaj" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>
+                                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>
+
+                                    @*<button type="button" id="dodaj" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>*@
                                 </td>
 
                             }
@@ -125,7 +127,7 @@
                             {
                                 <td>
                                     @dr["DateRec"] <br />
-                                    <b> @dr["TrajanjeZastoja"] </b>
+                                    <b> @dr["TrajanjeZastoja"]</b>
                                 </td>
                                 <td>
                                     <b>@dr["MachCode"].ToString()</b> <br />
@@ -133,11 +135,16 @@
                                 </td>
                                 <td>@dr["DescrizioneFermo"].ToString() </td>
                                 <td>
-                                    <button type="button" id="dodaj" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button>
+                                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button>
                                     <button class="btn btn-success" disabled> Odbaci </button>
                                 </td>
+
+                                @*<td> <button type="button" id="dodaj" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button></td>
+                                    <td> <button class="btn btn-success" disabled> Odbaci </button></td>*@
                             }
+
                         </tr>
+
                     }
 
 
@@ -151,13 +158,8 @@
         }
     </form>
 
-    @*<a  href='javascript:history.go(-1)'><b>Go Back to Previous Page</b></a>*@
     <p><a onclick="location.href='@Url.Action("Index", "Home")'">Go Back to Previous Page</a></p>
 
-    <script>
-
-
-    </script>
 </body>
 
 </html>
