@@ -22,7 +22,7 @@ namespace WebTableti.Models
             {
                 string email = "grupa1.nautilus@tubla.local";
                 conn.Open();
-                cmd = new SqlCommand("Select * from NF_Tracc_fermi_Grupa33 where Email=@email and LastStopCode in (50002,50007,50008) order by Email, DateRec desc", conn);
+                cmd = new SqlCommand("Select * from NF_Tracc_fermi_Grupa33_NEW where Email=@email and LastStopCode in (50002,50007,50008) order by Email, DateRec desc", conn);
                 cmd.Parameters.AddWithValue("@email", email);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dtPodaci);
@@ -39,7 +39,7 @@ namespace WebTableti.Models
             {
                 string email = "grupa2.nautilus@tubla.local";
                 conn.Open();
-                cmd = new SqlCommand("Select * from NF_Tracc_fermi_Grupa33 where Email=@email and LastStopCode in (50002,50007,50008) order by Email, DateRec desc", conn);
+                cmd = new SqlCommand("Select * from NF_Tracc_fermi_Grupa33_NEW where Email=@email and LastStopCode in (50002,50007,50008) order by Email, DateRec desc", conn);
                 cmd.Parameters.AddWithValue("@email", email);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dtPodaci);
@@ -56,7 +56,7 @@ namespace WebTableti.Models
             {
                 string email = "grupa3.nautilus@tubla.local";
                 conn.Open();
-                cmd = new SqlCommand("Select * from NF_Tracc_fermi_Grupa33 where Email=@email and LastStopCode in (50002,50007,50008) order by Email, DateRec desc", conn);
+                cmd = new SqlCommand("Select * from NF_Tracc_fermi_Grupa33_NEW where Email=@email and LastStopCode in (50002,50007,50008) order by Email, DateRec desc", conn);
                 cmd.Parameters.AddWithValue("@email", email);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dtPodaci);
@@ -131,7 +131,7 @@ namespace WebTableti.Models
             {
                 conn.Open();
                 cmd = new SqlCommand("select LastStopCode, count(LastStopCode) as Brojac " +
-                    "from NF_Tracc_fermi_Grupa33 where Email='grupa1.nautilus@tubla.local' group by LastStopCode", conn);
+                    "from NF_Tracc_fermi_Grupa33_NEW where Email='grupa1.nautilus@tubla.local' group by LastStopCode", conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dtPodaciBrojac);
             }
@@ -146,7 +146,7 @@ namespace WebTableti.Models
             {
                 conn.Open();
                 cmd = new SqlCommand("select LastStopCode, count(LastStopCode) as Brojac " +
-                    "from NF_Tracc_fermi_Grupa33 where Email='grupa2.nautilus@tubla.local' group by LastStopCode", conn);
+                    "from NF_Tracc_fermi_Grupa33_NEW where Email='grupa2.nautilus@tubla.local' group by LastStopCode", conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dtPodaciBrojac);
             }
@@ -162,7 +162,7 @@ namespace WebTableti.Models
             {
                 conn.Open();
                 cmd = new SqlCommand("select LastStopCode, count(LastStopCode) as Brojac " +
-                    "from NF_Tracc_fermi_Grupa33 where Email='grupa3.nautilus@tubla.local' group by LastStopCode", conn);
+                    "from NF_Tracc_fermi_Grupa33_NEW where Email='grupa3.nautilus@tubla.local' group by LastStopCode", conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dtPodaciBrojac);
             }

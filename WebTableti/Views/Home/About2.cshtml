@@ -27,6 +27,43 @@
             background-color: yellow;
             color: black;
         }
+
+        .linija1 {
+            background-color: blueviolet;
+        }
+
+        .linija2 {
+            background-color: darkorange;
+        }
+
+        .linija3 {
+            background-color: chartreuse;
+        }
+
+        .linija4 {
+            background-color: darkcyan;
+        }
+
+        .linija5 {
+            background-color: deeppink;
+        }
+
+        .linija6 {
+            background-color: forestgreen;
+        }
+
+        .linija7 {
+            background-color: khaki;
+        }
+
+        .linija8 {
+            background-color: lightpink;
+        }
+
+        .linija9 {
+            background-color: olive;
+        }
+
     </style>
 
 </head>
@@ -45,6 +82,18 @@
         <button disabled style="background-color:white;"> <b>Fermo 50002: @ViewBag.Brojac2</b> </button>
         <button class="fermo07" disabled> <b>Fermo 50007: @ViewBag.Brojac7</b> </button>
         <button class="fermo" disabled> <b>Fermo 50008: @ViewBag.Brojac8</b></button>
+
+        Linije:
+        <button disabled style="background-color:blueviolet;"><b> 1 </b> </button>
+        <button disabled style="background-color:darkorange;"><b> 2 </b> </button>
+        <button disabled style="background-color:chartreuse;"><b> 3 </b> </button>
+        <button disabled style="background-color:darkcyan;"><b> 4 </b> </button>
+        <button disabled style="background-color:deeppink;"><b> 5 </b> </button>
+        <button disabled style="background-color:forestgreen;"><b> 6 </b> </button>
+        <button disabled style="background-color:khaki;"><b> 7 </b> </button>
+        <button disabled style="background-color:lightpink;"><b> 8 </b> </button>
+        <button disabled style="background-color:olive;"><b> 9 </b> </button>
+
         <br />
         <hr />
 
@@ -77,71 +126,133 @@
                     </thead>
                     @foreach (DataRow dr in Model.Rows)
                     {
-                        <tr>
-                            <td>
-                                <button type="button" class="btn btn-info" onclick="location.href='@(Url.Action("Details", "Home", new { kod = @dr["MachCode"] }))'">
-                                    Detalji: @dr["brojac"]
-                                </button>
-                            </td>
-                            @if (Convert.ToInt32(dr["LastStopCode"]) == 50008)
-                            {
-                                <td class="fermo">
-                                    @dr["LastStopCode"]
-                                </td>
-                            }
-                            else if (Convert.ToInt32(dr["LastStopCode"]) == 50007)
-                            { 
-                                <td class="fermo07">
-                                    @dr["LastStopCode"]
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    @dr["LastStopCode"]
-                                </td>
-                            }
-                            @if (dr["Status"] != System.DBNull.Value)
-                            {
-                                <td class="mystyle">
-                                    @dr["DateRec"]<br />
-                                    <b> @dr["TrajanjeZastoja"] </b>
-                                </td>
-                                <td class="mystyle">
-                                    <b>@dr["MachCode"].ToString()</b>  <br />
-                                    @dr["RoomCode"]
-                                </td>
-                                <td class="mystyle">@dr["DescrizioneFermo"].ToString() </td>
-                                @*<td> <button class="btn btn-danger" disabled> Preuzeto </button></td>*@
-                                <td>
-                                    <button class="btn btn-danger" disabled> Preuzeto </button>
-                                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>
+                <tr>
 
-                                    @*<button type="button" id="dodaj" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>*@
-                                </td>
+                    @{
+                        string boja;
+                        string linija1 = "LINEA-1";
+                        string linija2 = "LINEA-2";
+                        string linija3 = "LINEA-3";
+                        string linija4 = "LINEA-4";
+                        string linija5 = "LINEA-5";
+                        string linija6 = "LINEA-6";
+                        string linija7 = "LINEA-7";
+                        string linija8 = "LINEA-8";
+                        string linija9 = "LINEA-9";
+                        string linija = dr["RoomCode"].ToString();
 
-                            }
-                            else
-                            {
-                                <td>
-                                    @dr["DateRec"] <br />
-                                    <b> @dr["TrajanjeZastoja"]</b>
-                                </td>
-                                <td>
-                                    <b>@dr["MachCode"].ToString()</b> <br />
-                                    @dr["RoomCode"]
-                                </td>
-                                <td>@dr["DescrizioneFermo"].ToString() </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button>
-                                    <button class="btn btn-success" disabled> Odbaci </button>
-                                </td>
+                        if (linija.Trim() == linija1)
+                        {
+                            boja = "linija1";
+                        }
+                        else if (linija.Trim() == linija2)
+                        {
+                            boja = "linija2";
+                        }
+                        else if (linija.Trim() == linija3)
+                        {
+                            boja = "linija3";
+                        }
+                        else if (linija.Trim() == linija4)
+                        {
+                            boja = "linija4";
+                        }
+                        else if (linija.Trim() == linija5)
+                        {
+                            boja = "linija5";
+                        }
+                        else if (linija.Trim() == linija6)
+                        {
+                            boja = "linija6";
+                        }
+                        else if (linija.Trim() == linija7)
+                        {
+                            boja = "linija7";
+                        }
+                        else if (linija.Trim() == linija8)
+                        {
+                            boja = "linija8";
+                        }
+                        else if (linija.Trim() == linija9)
+                        {
+                            boja = "linija9";
+                        }
+                        else
+                        {
+                            boja = "";
+                        }
+                    }
 
-                                @*<td> <button type="button" id="dodaj" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button></td>
-                                <td> <button class="btn btn-success" disabled> Odbaci </button></td>*@
-                            }
+                    <td class=@boja>
+                        <button type="button" class="btn btn-info" onclick="location.href='@(Url.Action("Details", "Home", new { kod = @dr["MachCode"] }))'">
+                            Detalji: @dr["brojac"]
+                        </button>
+                    </td>
+                    @if (Convert.ToInt32(dr["LastStopCode"]) == 50008)
+                    {
+                        <td class="fermo">
+                            @dr["LastStopCode"]
+                        </td>
+                    }
+                    else if (Convert.ToInt32(dr["LastStopCode"]) == 50007)
+                    {
+                        <td class="fermo07">
+                            @dr["LastStopCode"]
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @dr["LastStopCode"]
+                        </td>
+                    }
+                    @if (dr["Status"] != System.DBNull.Value)
+                    {
+                        <td class="mystyle">
+                            @dr["DateRec"]<br />
+                            <b> @dr["TrajanjeZastoja"] </b>
+                        </td>
+                        <td class="mystyle">
+                            <b>@dr["MachCode"].ToString()</b> <br />
+                            @dr["RoomCode"] <br />
+                            @dr["GroupCode"] <br />
+                            @dr["ModelCode"] <br />
+                            @dr["Needles"]
+                        </td>
+                        <td class="mystyle">@dr["DescrizioneFermo"].ToString() </td>
+                        @*<td> <button class="btn btn-danger" disabled> Preuzeto </button></td>*@
+                        <td>
+                            <button class="btn btn-danger" disabled> Preuzeto </button>
+                            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>
 
-                        </tr>
+                            @*<button type="button" id="dodaj" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>*@
+                        </td>
+
+                    }
+                    else
+                    {
+                        <td>
+                            @dr["DateRec"] <br />
+                            <b> @dr["TrajanjeZastoja"]</b>
+                        </td>
+                        <td>
+                            <b>@dr["MachCode"].ToString()</b> <br />
+                            @dr["RoomCode"] <br />
+                            @dr["GroupCode"] <br />
+                            @dr["ModelCode"] <br />
+                            @dr["Needles"]
+                        </td>
+                        <td>@dr["DescrizioneFermo"].ToString() </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button>
+                            <button class="btn btn-success" disabled> Odbaci </button>
+                        </td>
+
+                        @*<td> <button type="button" id="dodaj" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button></td>
+            <td> <button class="btn btn-success" disabled> Odbaci </button></td>*@
+                    }
+
+                </tr>
 
                     }
 

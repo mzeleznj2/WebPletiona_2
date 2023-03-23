@@ -143,6 +143,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
+    <Compile Include="Controllers\RemontController.cs" />
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -254,6 +255,9 @@
     <Content Include="Views\Info\PrikažiInfo.cshtml" />
     <Content Include="Views\Shared\_LayoutMano.cshtml" />
     <Content Include="Views\Home\About3.cshtml" />
+    <Content Include="Views\Remont\Index.cshtml" />
+    <Content Include="Views\Remont\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutRemont.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

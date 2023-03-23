@@ -72,6 +72,7 @@ namespace WebTableti.Controllers
             ViewBag.Brojac2 = Convert.ToInt32(brojac2.FirstOrDefault());
             ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
             ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
+            
 
 
             return View("About", dtPodaci);
