@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Fermi</title>
+    <title> Mašine - Remont</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -12,8 +12,8 @@
         <div class="container">
             <div class="navbar-header">
                 @*@Html.ActionLink("Izbornik", "Index", "Info", new { area = "" }, new { @class = "navbar-brand" })*@
-                @Html.ActionLink("Dodaj Remont", "Index", "Info", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Prikaz Remont-a", "PrikažiInfo", "Info", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Dodaj Remont", "DodajRemont", "Remont", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Prikaz Remont-a", "Index", "Remont", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

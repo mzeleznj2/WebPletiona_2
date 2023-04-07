@@ -38,6 +38,10 @@ public partial class dbNautilusEntities1 : DbContext
 
     public DbSet<TUBLAInfo> TUBLAInfo { get; set; }
 
+    public DbSet<RemontMach> RemontMach { get; set; }
+
+    public DbSet<MACHINES_SETUP> MACHINES_SETUP { get; set; }
+
 }
 
 }
