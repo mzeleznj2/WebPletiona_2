@@ -65,6 +65,8 @@ namespace WebTableti.Models
             return dtPodaci;
         }
 
+        
+
         //public DataTable NapuniGrupu3()
         //{
         //    DataTable dtPodaci = new DataTable();
@@ -172,6 +174,44 @@ namespace WebTableti.Models
 
         //
 
+        public void AzurirajMasine()
+        {
+            DataTable dtMasine = new DataTable();
+            using (conn = new SqlConnection(connString))
+            {
+               cmd = new SqlCommand("select MachCode, MachineId from MACHINES_SETUP", conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtMasine);
+            }
+
+            DataTable dtRemont = new DataTable();
+            using (conn = new SqlConnection(connString))
+            {
+                cmd = new SqlCommand("select MachCode, MachineId from RemontMach", conn);
+                SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
+                adapter2.Fill(dtRemont);
+            }
+
+            foreach (DataRow drRem in dtRemont.Rows)
+            {
+                foreach (DataRow drMas in dtMasine.Rows)
+                {
+                    if ((drRem["MachineId"] == drMas["MachineId"]) && (drRem["MachCode"] != drMas["MachCode"]) )
+                    {
+                        using (conn = new SqlConnection(connString))
+                        {
+                            cmd = new SqlCommand("UPDATE RemontMach SET MachCode = @brojMasine where MachineId=@matricola", conn);
+
+                            cmd.Parameters.AddWithValue("@brojMasine", drMas["MachCode"]);
+                            cmd.Parameters.AddWithValue("@matricola", drRem["MachineId"]);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+
+
+        }
 
 
     }

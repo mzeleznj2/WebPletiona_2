@@ -45,7 +45,7 @@
           </Key>
           <Property Name="IdRemonta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DatumOd" Type="date" />
-          <Property Name="Opis" Type="nvarchar" MaxLength="150" />
+          <Property Name="Opis" Type="text" />
           <Property Name="MachCode" Type="int" />
           <Property Name="MachineId" Type="char" MaxLength="30" />
           <Property Name="DatumPov" Type="date" />
@@ -125,7 +125,7 @@
           </Key>
           <Property Name="IdRemonta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DatumOd" Type="DateTime" Precision="0" />
-          <Property Name="Opis" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="MachCode" Type="Int32" />
           <Property Name="MachineId" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
           <Property Name="DatumPov" Type="DateTime" Precision="0" />

@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebTableti.Models;
 
 namespace WebTableti.Controllers
 {
@@ -18,11 +19,13 @@ namespace WebTableti.Controllers
         {
             if (Session["User"] != null)
             {
-                return View();
+                Podaci podaci = new Podaci();
+                podaci.AzurirajMasine();
+
+                return View(context.RemontMach.ToList());                
             }
 
-            return RedirectToAction("Login");
-            //return View(context.TUBLAInfo.ToList());
+            return RedirectToAction("Login");           
         }
 
         public ActionResult DodajRemont()
@@ -97,7 +100,8 @@ namespace WebTableti.Controllers
 
             Response.Write("Imena " + user + " " + pass);
 
-            if ((user == "admin" && pass == "admin") || (user == "mehanicar1" || pass == "mehanicar1"))
+            if ((user == "admin" && pass == "admin") || (user == "rodiz" && pass == "zoran123!")
+                || (user == "kosn" && pass == "nikola123!"))
             {
                 Session["User"] = user;
                 Session["Password"] = pass;
@@ -111,9 +115,61 @@ namespace WebTableti.Controllers
                         
         }
 
-        public ActionResult PregledRemonta()
+
+        public ActionResult EditRemont(int id)
         {
+            if (Session["User"] != null)
+            {
+                var data = context.RemontMach.Where(x => (x.IdRemonta == id)).FirstOrDefault();
+
+                return View(data);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult EditRemont(RemontMach remontMach)
+        {
+            if (ModelState.IsValid)
+            {
+                using (context)
+                {
+                    var data = context.RemontMach.Where(x => (x.IdRemonta == remontMach.IdRemonta)).FirstOrDefault();
+
+                    if (data != null)
+                    {
+                        data.DatumPov =  remontMach.DatumPov;
+                        data.Opis = remontMach.Opis;
+                    }
+                    context.SaveChanges();
+
+                    TempData["uspjehUpdate"] = "Uspješno ste ažurirali Remont #" + data.IdRemonta;
+                }
+
+                return RedirectToAction("Index");
+            }
+
             return View();
+
+        }
+
+
+        public ActionResult Logout()
+        {
+            if (Session["User"] != null)
+            {
+                Session["User"] = "";
+                Session["Password"] = "";
+
+                RedirectToAction("Login");
+
+            }
+
+            return View("Login");
         }
 
     }

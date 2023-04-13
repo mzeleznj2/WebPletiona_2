@@ -14,27 +14,29 @@ namespace WebTableti
 
 using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    
-public partial class RemontMach
+
+    public partial class RemontMach
 {
 
     public int IdRemonta { get; set; }
 
+
+    [DisplayName("Datum kreiranja")]
     [DataType(DataType.Date)]
-    [Display(Name = "Datum remonta")]
     public Nullable<System.DateTime> DatumOd { get; set; }
 
     public string Opis { get; set; }
 
-    [Range(0, int.MaxValue, ErrorMessage = "Upišite pozitivni broj!")]
-    [Display(Name = "Broj mašine")]
+    [DisplayName("Broj mašine")]
     public Nullable<int> MachCode { get; set; }
 
+    [DisplayName("Matricola")]
     public string MachineId { get; set; }
 
+    [DisplayName("Datum završetka")]
     [DataType(DataType.Date)]
-    [Display(Name = "Datum Povratka")]
     public Nullable<System.DateTime> DatumPov { get; set; }
 
     public string Korisnik { get; set; }

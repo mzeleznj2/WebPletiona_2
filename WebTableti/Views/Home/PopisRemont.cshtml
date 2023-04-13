@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<WebTableti.RemontMach>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutRemont.cshtml";
+    ViewBag.Title = "PopisRemont";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <!DOCTYPE html>
 <html>
@@ -33,17 +32,8 @@
 </head>
 <body>
 
-    <h3> Popis - remont </h3>
-
+    <h3>PopisRemont</h3>
     <hr />
-
-    @if (TempData["uspjehUpdate"] != null)
-    {
-        <div class="alert alert-success" role="alert">
-            @TempData["uspjehUpdate"]
-        </div>
-    }
-
 
     <table id="table" class="table table-bordered table-hover" border="1">
         <thead>
@@ -66,10 +56,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.DatumPov)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Korisnik)
-                </th>
-                <th></th>
             </tr>
         </thead>
 
@@ -91,36 +77,26 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MachineId)
                 </td>
-                    @{
 
-                        if (!String.IsNullOrEmpty(item.DatumPov.ToString()))
-                        {
-                            <td class="bg-success">
-                                @Html.DisplayFor(modelItem => item.DatumPov)
-                            </td>
-                        }
-                        else
-                        {
-                            <td class="bg-danger">
-                                @Html.DisplayFor(modelItem => item.DatumPov)
-                            </td>
-                        }
+                @{
+                    
+                    if (!String.IsNullOrEmpty(item.DatumPov.ToString()))
+                    {
+                        <td class="bg-success">
+                            @Html.DisplayFor(modelItem => item.DatumPov)
+                        </td>
                     }
-                <td>
-                    @Html.DisplayFor(modelItem => item.Korisnik)
-                </td>
-                <td>
-                    <span class="glyphicon glyphicon-pencil"></span> @Html.ActionLink("Ažuriraj", "EditRemont", new { id = item.@IdRemonta })
-                    @*<button id="editRemont" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fa fa-edit"></i> Ažuriraj
-                    </button>*@
-                </td>
+                    else
+                    {
+                        <td class="bg-danger">
+                            @Html.DisplayFor(modelItem => item.DatumPov)
+                        </td>
+                    }
+                }
+
             </tr>
-
         }
-
     </table>
-
 
     <script>
         $(document).ready(function () {

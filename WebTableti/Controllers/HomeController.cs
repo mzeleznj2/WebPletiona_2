@@ -303,26 +303,9 @@ namespace WebTableti.Controllers
         }
 
 
-        //[HttpPost]
-        //public ActionResult Login(string username, string password)
-        //{
-        //    if (username.Equals("acc1") && password.Equals("123"))
-        //    {
-        //        Session["username"] = "username";
-        //        return View("Index");
-        //    }
-        //    else
-        //    {
-        //        ViewBag.error = "Invalid Account";
-        //        return View("Login");
-        //    }
-        //}
-
-        //[HttpGet]
-        //public ActionResult Logout()
-        //{
-        //    Session.Remove("username");
-        //    return RedirectToAction("Index");
-        //}
+        public ActionResult PopisRemont()
+        {
+            return View(context.RemontMach.ToList());
+        }
     }
 }
