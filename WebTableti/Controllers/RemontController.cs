@@ -22,10 +22,10 @@ namespace WebTableti.Controllers
                 Podaci podaci = new Podaci();
                 podaci.AzurirajMasine();
 
-                return View(context.RemontMach.ToList());                
+                return View(context.RemontMach.ToList());
             }
 
-            return RedirectToAction("Login");           
+            return RedirectToAction("Login");
         }
 
         public ActionResult DodajRemont()
@@ -108,11 +108,11 @@ namespace WebTableti.Controllers
 
                 return RedirectToAction("Index");
             }
-            
 
-             @TempData["ErrorMessage"] = "Krivi username ili password!";
-             return RedirectToAction("Login");                     
-                        
+
+            @TempData["ErrorMessage"] = "Krivi username ili password!";
+            return RedirectToAction("Login");
+
         }
 
 
@@ -142,7 +142,7 @@ namespace WebTableti.Controllers
 
                     if (data != null)
                     {
-                        data.DatumPov =  remontMach.DatumPov;
+                        //data.DatumPov =  remontMach.DatumPov;
                         data.Opis = remontMach.Opis;
                     }
                     context.SaveChanges();
@@ -155,6 +155,21 @@ namespace WebTableti.Controllers
 
             return View();
 
+        }
+
+
+        public ActionResult DeleteRemont(int id)
+        {
+            using (context)
+            {
+                RemontMach remont = context.RemontMach.Where(x => x.IdRemonta == id).FirstOrDefault<RemontMach>();
+                context.RemontMach.Remove(remont);
+                context.SaveChanges();
+
+                TempData["obrisano"] = "Uspješno ste obrisali Remont sa brojem matricole: " + remont.MachineId + "!";
+            }
+
+            return RedirectToAction("Index", "Remont");
         }
 
 

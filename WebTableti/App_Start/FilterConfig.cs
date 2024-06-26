@@ -9,5 +9,7 @@ namespace WebTableti
         {
             filters.Add(new HandleErrorAttribute());
         }
+         
+
     }
 }
