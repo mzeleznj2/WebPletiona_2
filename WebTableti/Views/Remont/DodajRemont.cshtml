@@ -9,7 +9,14 @@
 @if (TempData["ErrorMachCode"] != null)
 {
     <div class="alert alert-danger" role="alert">
-        @TempData["ErrorMachCode"]
+        @TempData["ErrorMatricola"]
+    </div>
+}
+
+@if (TempData["duljinaStringa"] != null)
+{ 
+    <div class="alert alert-danger" role="alert">
+        @TempData["duljinaStringa"]
     </div>
 }
 
@@ -52,10 +59,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MachCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MachineId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MachCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MachCode, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MachineId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MachineId, "", new { @class = "text-danger" })
             </div>
         </div>
 

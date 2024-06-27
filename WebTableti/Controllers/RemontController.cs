@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -43,47 +44,106 @@ namespace WebTableti.Controllers
         {
             if (Session["User"] != null)
             {
-                int brojMasine = Convert.ToInt32(tremont.MachCode);
+                string DBrojMatricole = "D_" + tremont.MachineId;
+                string LBrojMatricole = "L_" + tremont.MachineId;
+                string GBrojMatricole = "G_" + tremont.MachineId;                
 
-                if (brojMasine < 1)
+
+                if (tremont.MachineId.Length < 5)
                 {
-                    TempData["ErrorMachCode"] = "Ne postoji mašina sa brojem " + brojMasine + "!";
+                    TempData["duljinaStringa"] = "Matricola mora sadržavati 5 znakova!";
+                    return RedirectToAction("DodajRemont");
+                }               
+
+                else if (string.IsNullOrWhiteSpace(DBrojMatricole) && 
+                         string.IsNullOrWhiteSpace(LBrojMatricole) &&
+                         string.IsNullOrWhiteSpace(GBrojMatricole)) 
+                {
+                    TempData["ErrorMatricola"] = "Ne postoji mašina sa matricolom " + tremont.MachineId + "!";
                     return RedirectToAction("DodajRemont");
                 }
 
-                var id_machine = context.MACHINES_SETUP.Where(a => a.MachCode == tremont.MachCode).FirstOrDefault();
+                var id_machineD = context.MACHINES_SETUP.Where(a => a.MachineId == DBrojMatricole).FirstOrDefault();
+                var id_machineL = context.MACHINES_SETUP.Where(a => a.MachineId == LBrojMatricole).FirstOrDefault();
+                var id_machineG = context.MACHINES_SETUP.Where(a => a.MachineId == GBrojMatricole).FirstOrDefault();
 
                 using (var context = new dbNautilusEntities1())
                 {
-                    if (id_machine != null)
+                    if (id_machineD != null)
                     {
+                        int brojMasine = id_machineD.MachCode;
+                        string matricola = id_machineD.MachineId;
+
                         var remont = new RemontMach()
                         {
-                            DatumOd = DateTime.Now,
+                            DatumOd = tremont.DatumOd,
                             Opis = tremont.Opis,
-                            MachCode = tremont.MachCode,
-                            MachineId = id_machine.MachineId,
+                            MachCode = brojMasine,
+                            MachineId = matricola,
                             Korisnik = Session["User"].ToString()
                         };
 
                         context.RemontMach.Add(remont);
                         context.SaveChanges();
 
-                        TempData["Uspjeh"] = "Dodan je novi remont za mašinu " + id_machine.MachCode + ".";
+                        TempData["Uspjeh"] = "Dodan je novi remont za mašinu " + brojMasine + " sa matricolom " + matricola + ".";
+                        return RedirectToAction("DodajRemont");
+                    }
+                    else if (id_machineL != null)
+                    {
+                        int brojMasine = id_machineL.MachCode;
+                        string matricola = id_machineL.MachineId;
+
+                        var remont = new RemontMach()
+                        {
+                            //DatumOd = DateTime.Now,
+                            DatumOd = tremont.DatumOd,
+                            Opis = tremont.Opis,
+                            MachCode = brojMasine,
+                            MachineId = matricola,
+                            Korisnik = Session["User"].ToString()
+                        };
+
+                        context.RemontMach.Add(remont);
+                        context.SaveChanges();
+
+                        TempData["Uspjeh"] = "Dodan je novi remont za mašinu " + brojMasine + " sa matricolom " + matricola + ".";
+                        return RedirectToAction("DodajRemont");
+                    }
+                    else if (id_machineG != null)
+                    {
+                        int brojMasine = id_machineG.MachCode;
+                        string matricola = id_machineG.MachineId;
+
+                        var remont = new RemontMach()
+                        {
+                            //DatumOd = DateTime.Now,
+                            DatumOd = tremont.DatumOd,
+                            Opis = tremont.Opis,
+                            MachCode = brojMasine,
+                            MachineId = matricola,
+                            Korisnik = Session["User"].ToString()
+                        };
+
+                        context.RemontMach.Add(remont);
+                        context.SaveChanges();
+
+                        TempData["Uspjeh"] = "Dodan je novi remont za mašinu " + brojMasine + " sa matricolom " + matricola + ".";
+                        return RedirectToAction("DodajRemont");
                     }
                     else
                     {
-                        TempData["ErrorMessage"] = "Ne postoji mašina sa brojem " + tremont.MachCode + "!";
+                        TempData["ErrorMessage"] = "Ne postoji mašina sa matricolom " + tremont.MachineId + "!";
                         return RedirectToAction("DodajRemont");
                     }
                 }
-
-                return View();
+               
             }
 
             return RedirectToAction("Login");
 
         }
+
 
         public ActionResult Login()
         {
@@ -147,7 +207,7 @@ namespace WebTableti.Controllers
                     }
                     context.SaveChanges();
 
-                    TempData["uspjehUpdate"] = "Uspješno ste ažurirali Remont #" + data.IdRemonta;
+                    TempData["uspjehUpdate"] = "Uspješno ste ažurirali Remont sa matricolom " + data.MachineId + "!";
                 }
 
                 return RedirectToAction("Index");

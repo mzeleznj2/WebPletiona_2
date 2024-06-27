@@ -55,19 +55,20 @@
     <table id="table" class="table table-bordered table-hover" border="1">
         <thead>
             <tr>
-
+                <th>
+                    @Html.DisplayNameFor(model => model.MachineId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MachCode)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DatumOd)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Opis)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MachCode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MachineId)
-                </th>
+
+
                 <th>
                     @Html.DisplayNameFor(model => model.Korisnik)
                 </th>
@@ -79,25 +80,27 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DatumOd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Opis)
+                    @Html.DisplayFor(modelItem => item.MachineId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MachCode)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MachineId)
+                    @Html.DisplayFor(modelItem => item.DatumOd)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Korisnik)
                 </td>
                 <td>
                     <span class="glyphicon glyphicon-pencil"></span> @Html.ActionLink("Ažuriraj", "EditRemont", new { id = item.@IdRemonta })
                     @*<button id="editRemont" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                            <i class="fa fa-edit"></i> Ažuriraj
-                        </button>*@
+                <i class="fa fa-edit"></i> Ažuriraj
+            </button>*@
                 </td>
 
                 <td>
