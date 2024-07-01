@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebTableti.Models;
@@ -33,7 +34,7 @@ namespace WebTableti.Controllers
                 
           return View();
    
-        }
+    }
 
        
         //Grupa1
@@ -300,6 +301,127 @@ namespace WebTableti.Controllers
             }
 
             return RedirectToAction("About3", "Home");
+        }
+
+
+        public ActionResult Sortirano1(int linija)
+        {
+            Podaci podaci = new Podaci();
+            DataTable dtPodaci = podaci.NapuniGridPoLinijiGrupa1(linija);
+
+
+            List<Brojac> listaBrojac = new List<Brojac>();
+            DataTable dtPodaciBrojac = podaci.brojacGrupa1();
+
+            foreach (DataRow dr in dtPodaciBrojac.Rows)
+            {
+
+                listaBrojac = dtPodaciBrojac.AsEnumerable().Select
+                (x => new Brojac
+                {
+                    LastStopCode = Convert.ToInt32(x["LastStopCode"]),
+                    brojac = Convert.ToInt32(x["Brojac"])
+                }).ToList();
+            }
+
+            var brojac2 = from r in listaBrojac
+                          where r.LastStopCode == 50002
+                          select r.brojac;
+
+            var brojac7 = from r in listaBrojac
+                          where r.LastStopCode == 50007
+                          select r.brojac;
+
+            var brojac8 = from r in listaBrojac
+                          where r.LastStopCode == 50008
+                          select r.brojac;
+
+            ViewBag.Brojac2 = Convert.ToInt32(brojac2.FirstOrDefault());
+            ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
+            ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
+
+           
+            return View("Sortirano1", dtPodaci);
+        }
+
+        public ActionResult Sortirano2(int linija)
+        {
+            Podaci podaci = new Podaci();
+            DataTable dtPodaci = podaci.NapuniGridPoLinijiGrupa2(linija);
+
+
+            List<Brojac> listaBrojac = new List<Brojac>();
+            DataTable dtPodaciBrojac = podaci.brojacGrupa1();
+
+            foreach (DataRow dr in dtPodaciBrojac.Rows)
+            {
+
+                listaBrojac = dtPodaciBrojac.AsEnumerable().Select
+                (x => new Brojac
+                {
+                    LastStopCode = Convert.ToInt32(x["LastStopCode"]),
+                    brojac = Convert.ToInt32(x["Brojac"])
+                }).ToList();
+            }
+
+            var brojac2 = from r in listaBrojac
+                          where r.LastStopCode == 50002
+                          select r.brojac;
+
+            var brojac7 = from r in listaBrojac
+                          where r.LastStopCode == 50007
+                          select r.brojac;
+
+            var brojac8 = from r in listaBrojac
+                          where r.LastStopCode == 50008
+                          select r.brojac;
+
+            ViewBag.Brojac2 = Convert.ToInt32(brojac2.FirstOrDefault());
+            ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
+            ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
+
+
+            return View("Sortirano2", dtPodaci);
+        }
+
+        public ActionResult Sortirano3(int linija)
+        {
+            Podaci podaci = new Podaci();
+            DataTable dtPodaci = podaci.NapuniGridPoLinijiGrupa3(linija);
+
+
+            List<Brojac> listaBrojac = new List<Brojac>();
+            DataTable dtPodaciBrojac = podaci.brojacGrupa1();
+
+            foreach (DataRow dr in dtPodaciBrojac.Rows)
+            {
+
+                listaBrojac = dtPodaciBrojac.AsEnumerable().Select
+                (x => new Brojac
+                {
+                    LastStopCode = Convert.ToInt32(x["LastStopCode"]),
+                    brojac = Convert.ToInt32(x["Brojac"])
+                }).ToList();
+            }
+
+            var brojac2 = from r in listaBrojac
+                          where r.LastStopCode == 50002
+                          select r.brojac;
+
+            var brojac7 = from r in listaBrojac
+                          where r.LastStopCode == 50007
+                          select r.brojac;
+
+            var brojac8 = from r in listaBrojac
+                          where r.LastStopCode == 50008
+                          select r.brojac;
+
+            ViewBag.Brojac2 = Convert.ToInt32(brojac2.FirstOrDefault());
+            ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
+            ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
+
+
+            return View("Sortirano3", dtPodaci);
         }
 
 

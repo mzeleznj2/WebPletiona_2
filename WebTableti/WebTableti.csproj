@@ -263,6 +263,9 @@
     <Content Include="Views\Remont\DodajRemont.cshtml" />
     <Content Include="Views\Remont\EditRemont.cshtml" />
     <Content Include="Views\Home\PopisRemont.cshtml" />
+    <Content Include="Views\Home\Sortirano1.cshtml" />
+    <Content Include="Views\Home\Sortirano2.cshtml" />
+    <Content Include="Views\Home\Sortirano3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

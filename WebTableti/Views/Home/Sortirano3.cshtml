@@ -11,6 +11,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="refresh" content="30">
+
     <title> Fermi </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -31,39 +32,30 @@
         .linija1 {
             background-color: blueviolet;
         }
-
         .linija2 {
             background-color: darkorange;
         }
-
         .linija3 {
             background-color: chartreuse;
         }
-
         .linija4 {
             background-color: darkcyan;
         }
-
         .linija5 {
             background-color: deeppink;
         }
-
         .linija6 {
             background-color: forestgreen;
         }
-
         .linija7 {
             background-color: khaki;
         }
-
         .linija8 {
             background-color: lightpink;
         }
-
         .linija9 {
             background-color: olive;
         }
-
         .linija20 {
             background-color: hotpink;
         }
@@ -91,21 +83,21 @@
         <button class="fermo" disabled> <b>Fermo 50008: @ViewBag.Brojac8</b></button>
 
         Linije:
-        <button type="button" style="background-color:blueviolet;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 1 }))'"><b> 1 </b> </button>
-        <button type="button" style="background-color:darkorange;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 2 }))'"><b> 2 </b> </button>
-        <button type="button" style="background-color:chartreuse;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 3 }))'"><b> 3 </b> </button>
-        <button type="button" style="background-color:darkcyan;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 4 }))'"><b> 4 </b> </button>
-        <button type="button" style="background-color:deeppink;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 5 }))'"><b> 5 </b> </button>
-        <button type="button" style="background-color:forestgreen;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 6 }))'"><b> 6 </b> </button>
-        <button type="button" style="background-color:khaki;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 7 }))'"><b> 7 </b> </button>
-        <button type="button" style="background-color:lightpink;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 8 }))'"><b> 8 </b> </button>
-        <button type="button" style="background-color:olive;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 9 }))'"><b> 9 </b> </button>
-        <button type="button" style="background-color:hotpink;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 20 }))'"><b> 20 </b> </button>
-        <button type="button" style="background-color:SteelBlue;" onclick="location.href='@(Url.Action("Sortirano2", "Home", new { linija = 21 }))'"><b> 21 </b> </button>
-        <button type="button" style="background-color:azure" onclick="location.href='@(Url.Action("About2", "Home"))'"> Sve linije </button>
-
+        <button type="button" style="background-color:blueviolet;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 1 }))'"><b> 1 </b> </button>
+        <button type="button" style="background-color:darkorange;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 2 }))'"><b> 2 </b> </button>
+        <button type="button" style="background-color:chartreuse;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 3 }))'"><b> 3 </b> </button>
+        <button type="button" style="background-color:darkcyan;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 4 }))'"><b> 4 </b> </button>
+        <button type="button" style="background-color:deeppink;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 5 }))'"><b> 5 </b> </button>
+        <button type="button" style="background-color:forestgreen;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 6 }))'"><b> 6 </b> </button>
+        <button type="button" style="background-color:khaki;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 7 }))'"><b> 7 </b> </button>
+        <button type="button" style="background-color:lightpink;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 8 }))'"><b> 8 </b> </button>
+        <button type="button" style="background-color:olive;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 9 }))'"><b> 9 </b> </button>
+        <button type="button" style="background-color:hotpink;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 20 }))'"><b> 20 </b> </button>
+        <button type="button" style="background-color:SteelBlue;" onclick="location.href='@(Url.Action("Sortirano3", "Home", new { linija = 21 }))'"><b> 21 </b> </button>
+        <button type="button" style="background-color:azure" onclick="location.href='@(Url.Action("About3", "Home"))'"> Sve linije </button>
         <br />
         <hr />
+
 
         @{
             if (Model.Rows.Count > 0)
@@ -136,8 +128,8 @@
                     </thead>
                     @foreach (DataRow dr in Model.Rows)
                     {
+                        @*<tr id="redak" border="1" onclick="location.href = '@(Url.Action("Details", "Home", new { kod = @dr["MachCode"] }))'">*@
                         <tr>
-
                             @{
                                 string boja;
                                 string linija1 = "LINEA-1";
@@ -208,6 +200,9 @@
                                     Detalji: @dr["brojac"]
                                 </button>
                             </td>
+
+
+
                             @if (Convert.ToInt32(dr["LastStopCode"]) == 50008)
                             {
                                 <td class="fermo">
@@ -229,7 +224,7 @@
                             @if (dr["Status"] != System.DBNull.Value)
                             {
                                 <td class="mystyle">
-                                    @dr["DateRec"]<br />
+                                    @dr["DateRec"] <br />
                                     <b> @dr["TrajanjeZastoja"] </b>
                                 </td>
                                 <td class="mystyle">
@@ -240,12 +235,9 @@
                                     @dr["Needles"]
                                 </td>
                                 <td class="mystyle">@dr["DescrizioneFermo"].ToString() </td>
-                                @*<td> <button class="btn btn-danger" disabled> Preuzeto </button></td>*@
                                 <td>
                                     <button class="btn btn-danger" disabled> Preuzeto </button>
-                                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>
-
-                                    @*<button type="button" id="dodaj" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>*@
+                                    <button type="button" id="dodaj" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>
                                 </td>
 
                             }
@@ -253,7 +245,7 @@
                             {
                                 <td>
                                     @dr["DateRec"] <br />
-                                    <b> @dr["TrajanjeZastoja"]</b>
+                                    <b> @dr["TrajanjeZastoja"] </b>
                                 </td>
                                 <td>
                                     <b>@dr["MachCode"].ToString()</b> <br />
@@ -264,16 +256,11 @@
                                 </td>
                                 <td>@dr["DescrizioneFermo"].ToString() </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button>
+                                    <button type="button" id="dodaj" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button>
                                     <button class="btn btn-success" disabled> Odbaci </button>
                                 </td>
-
-                                @*<td> <button type="button" id="dodaj" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button></td>
-                                <td> <button class="btn btn-success" disabled> Odbaci </button></td>*@
                             }
-
                         </tr>
-
                     }
 
 
@@ -287,8 +274,13 @@
         }
     </form>
 
+    @*<a  href='javascript:history.go(-1)'><b>Go Back to Previous Page</b></a>*@
     <p><a onclick="location.href='@Url.Action("Index", "Home")'">Povratak na prethodnu stranicu</a></p>
 
+    <script>
+
+
+    </script>
 </body>
 
 </html>

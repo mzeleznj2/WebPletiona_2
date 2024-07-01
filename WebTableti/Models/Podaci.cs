@@ -65,7 +65,64 @@ namespace WebTableti.Models
             return dtPodaci;
         }
 
-        
+
+        public DataTable NapuniGridPoLinijiGrupa1(int linija)
+        {
+            string Linija = ("LINEA-" + linija).ToString();
+
+            DataTable dtPodaci = new DataTable();
+            using (conn = new SqlConnection(connString))
+            {
+                string email = "grupa1.nautilus@tubla.local";
+                conn.Open();
+                cmd = new SqlCommand("Select * from NF_Tracc_fermi_Grupa33_NEW where Email=@email and LastStopCode in (50002,50007,50008) and RoomCode=@linija order by Email, DateRec desc", conn);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@linija", Linija);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtPodaci);
+            }
+
+            return dtPodaci;
+        }
+
+        public DataTable NapuniGridPoLinijiGrupa2(int linija)
+        {
+            string Linija = ("LINEA-" + linija).ToString();
+
+            DataTable dtPodaci = new DataTable();
+            using (conn = new SqlConnection(connString))
+            {
+                string email = "grupa2.nautilus@tubla.local";
+                conn.Open();
+                cmd = new SqlCommand("Select * from NF_Tracc_fermi_Grupa33_NEW where Email=@email and LastStopCode in (50002,50007,50008) and RoomCode=@Linija order by Email, DateRec desc", conn);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@linija", Linija);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtPodaci);
+            }
+
+            return dtPodaci;
+        }
+
+
+        public DataTable NapuniGridPoLinijiGrupa3(int linija)
+        {
+            string Linija = ("LINEA-" + linija).ToString();
+
+            DataTable dtPodaci = new DataTable();
+            using (conn = new SqlConnection(connString))
+            {
+                string email = "grupa3.nautilus@tubla.local";
+                conn.Open();
+                cmd = new SqlCommand("Select * from NF_Tracc_fermi_Grupa33_NEW where Email=@email and LastStopCode in (50002,50007,50008) and RoomCode=@Linija order by Email, DateRec desc", conn);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@linija", Linija);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtPodaci);
+            }
+
+            return dtPodaci;
+        }
 
         //public DataTable NapuniGrupu3()
         //{

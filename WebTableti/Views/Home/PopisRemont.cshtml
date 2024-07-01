@@ -38,8 +38,9 @@
     <table id="table" class="table table-bordered table-hover" border="1">
         <thead>
             <tr>
+
                 <th>
-                    @Html.DisplayNameFor(model => model.IdRemonta)
+                    @Html.DisplayNameFor(model => model.MachineId)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DatumOd)
@@ -50,20 +51,17 @@
                 <th>
                     @Html.DisplayNameFor(model => model.MachCode)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MachineId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DatumPov)
-                </th>
+
+
             </tr>
         </thead>
 
         @foreach (var item in Model)
         {
             <tr>
+
                 <td>
-                    #@Html.DisplayFor(modelItem => item.IdRemonta)
+                    @Html.DisplayFor(modelItem => item.MachineId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DatumOd)
@@ -74,25 +72,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MachCode)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MachineId)
-                </td>
 
-                @{
-                    
-                    if (!String.IsNullOrEmpty(item.DatumPov.ToString()))
-                    {
-                        <td class="bg-success">
-                            @Html.DisplayFor(modelItem => item.DatumPov)
-                        </td>
-                    }
-                    else
-                    {
-                        <td class="bg-danger">
-                            @Html.DisplayFor(modelItem => item.DatumPov)
-                        </td>
-                    }
-                }
 
             </tr>
         }
