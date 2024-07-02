@@ -28,12 +28,9 @@ namespace WebTableti.Controllers
                     using (context)
                         {
                             return View(context.TUBLAInfo.OrderByDescending(x => x.datum).ToList());
-                        }
-                        
-                }
-                
-          return View();
-   
+                        }                       
+                }               
+          return View();  
     }
 
        
@@ -304,6 +301,7 @@ namespace WebTableti.Controllers
         }
 
 
+        //Grupa 1 filtriranje
         public ActionResult Sortirano1(int linija)
         {
             Podaci podaci = new Podaci();
@@ -344,6 +342,7 @@ namespace WebTableti.Controllers
             return View("Sortirano1", dtPodaci);
         }
 
+        //Grupa 2 filtriranje
         public ActionResult Sortirano2(int linija)
         {
             Podaci podaci = new Podaci();
@@ -384,6 +383,7 @@ namespace WebTableti.Controllers
             return View("Sortirano2", dtPodaci);
         }
 
+        //Grupa 3 filtriranje
         public ActionResult Sortirano3(int linija)
         {
             Podaci podaci = new Podaci();

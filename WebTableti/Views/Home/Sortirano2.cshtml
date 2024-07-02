@@ -237,7 +237,7 @@
                                 <td class="mystyle">@dr["DescrizioneFermo"].ToString() </td>
                                 <td>
                                     <button class="btn btn-danger" disabled> Preuzeto </button>
-                                    <button type="button" id="dodaj" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>
+                                    <button type="button" id="dodaj" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>
                                 </td>
 
                             }
@@ -256,7 +256,7 @@
                                 </td>
                                 <td>@dr["DescrizioneFermo"].ToString() </td>
                                 <td>
-                                    <button type="button" id="dodaj" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button>
+                                    <button type="button" id="dodaj" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button>
                                     <button class="btn btn-success" disabled> Odbaci </button>
                                 </td>
                             }
