@@ -9,5 +9,7 @@ namespace WebTableti.Models
     {
         public int LastStopCode { get; set; }
         public int brojac { get; set; }
+
+        public int linija { get; set; }
     }
 }

@@ -245,7 +245,7 @@
                                 @*<td> <button class="btn btn-danger" disabled> Preuzeto </button></td>*@
                                 <td>
                                     <button class="btn btn-danger" disabled> Preuzeto </button>
-                                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>
+                                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus3", "Home", new { kod = @dr["UniqueId"].ToString(), zastavica = 0 })'"> Odbaci </button>
 
                                     @*<button type="button" id="dodaj" class="btn btn-success" onclick="location.href='@Url.Action("OdbaciStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Odbaci </button>*@
                                 </td>
@@ -266,7 +266,7 @@
                                 </td>
                                 <td>@dr["DescrizioneFermo"].ToString() </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus2", "Home", new { kod = @dr["UniqueId"].ToString() })'"> Preuzmi </button>
+                                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("ChangeStatus3", "Home", new { kod = @dr["UniqueId"].ToString(), zastavica = 0 })'"> Preuzmi </button>
                                     <button class="btn btn-success" disabled> Odbaci </button>
                                 </td>
 
