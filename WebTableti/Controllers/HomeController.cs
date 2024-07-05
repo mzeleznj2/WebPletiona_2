@@ -76,7 +76,7 @@ namespace WebTableti.Controllers
             return View("About", dtPodaci);
 
         }
-
+            
 
         //Grupa2
         public ActionResult About2()

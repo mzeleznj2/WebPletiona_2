@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 
 namespace WebTableti.Models
 {
@@ -236,7 +237,7 @@ namespace WebTableti.Models
             DataTable dtMasine = new DataTable();
             using (conn = new SqlConnection(connString))
             {
-               cmd = new SqlCommand("select MachCode, MachineId from MACHINES_SETUP", conn);
+               cmd = new SqlCommand("select MachCode, MachineId from MACHINES_SETUP with (NOLOCK)", conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dtMasine);
             }
@@ -244,7 +245,7 @@ namespace WebTableti.Models
             DataTable dtRemont = new DataTable();
             using (conn = new SqlConnection(connString))
             {
-                cmd = new SqlCommand("select MachCode, MachineId from RemontMach", conn);
+                cmd = new SqlCommand("select MachCode, MachineId from RemontMach with (NOLOCK)", conn);
                 SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
                 adapter2.Fill(dtRemont);
             }
@@ -270,6 +271,8 @@ namespace WebTableti.Models
 
         }
 
+
+  
 
     }
 

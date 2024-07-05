@@ -161,7 +161,7 @@ namespace WebTableti.Controllers
             Response.Write("Imena " + user + " " + pass);
 
             if ((user == "admin" && pass == "admin") || (user == "rodiz" && pass == "zoran123!")
-                || (user == "kosn" && pass == "nikola123!"))
+                || (user == "kosn" && pass == "nikola123!") || (user == "ajhlerm" && pass == "marko123!"))
             {
                 Session["User"] = user;
                 Session["Password"] = pass;
