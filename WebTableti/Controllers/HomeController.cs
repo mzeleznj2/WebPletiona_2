@@ -19,6 +19,8 @@ namespace WebTableti.Controllers
         private SqlConnection conn = new SqlConnection();
         private SqlCommand cmd = new SqlCommand();
         private dbNautilusEntities1 context = new dbNautilusEntities1();
+        
+
 
         public ActionResult Index()
         {
@@ -160,8 +162,8 @@ namespace WebTableti.Controllers
         }
 
 
-
-        public ActionResult Details(int kod)
+        //STARO
+        public ActionResult DetailsOld(int kod, string linija)
         {
             DataTable dtPovijest = new DataTable();
             using (conn = new SqlConnection(connString))
@@ -177,6 +179,23 @@ namespace WebTableti.Controllers
 
             return View("Details", dtPovijest);
         }
+
+
+        //2 view-a u 1
+        public ActionResult Details(int kod, string linija)
+        {
+            Podaci podaci = new Podaci();
+            ViewModel model = new ViewModel(); 
+            model.podaciDetalji = podaci.sviDetalji(kod);
+
+            
+            model.podacidetalji06 = podaci.sviDetalji06(linija.Trim());
+            TempData["linija"] = linija.Trim();
+
+
+            return View(model);
+        }
+
 
         //Grupa 1
         public ActionResult ChangeStatus(string kod, int zastavica)

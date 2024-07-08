@@ -12,5 +12,8 @@ namespace WebTableti.Models
         public int stopKod { get; set; }
         public string poruka { get; set; }
         public string User { get; set; }
+        public int Shift { get; set; }
+
+
     }
 }

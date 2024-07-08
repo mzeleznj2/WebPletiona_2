@@ -196,7 +196,7 @@
                             }
 
                             <td class=@boja>
-                                <button type="button" class="btn btn-info" onclick="location.href='@(Url.Action("Details", "Home", new { kod = @dr["MachCode"] }))'">
+                                <button type="button" class="btn btn-info" onclick="location.href='@(Url.Action("Details", "Home", new { kod = @dr["MachCode"], linija = @dr["RoomCode"] }))'">
                                     Detalji: @dr["brojac"]
                                 </button>
                             </td>

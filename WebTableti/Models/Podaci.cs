@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
+using System.Web.Mvc;
 
 namespace WebTableti.Models
 {
@@ -13,8 +14,10 @@ namespace WebTableti.Models
     {
         string connString = ConfigurationManager.ConnectionStrings["dbNautilusConnectionString"].ConnectionString;
         SqlConnection conn = new SqlConnection();
-        SqlCommand cmd = new SqlCommand();
-        List<PodaciDetalji> DetaljiPodataka = new List<PodaciDetalji>();
+        SqlCommand cmd = new SqlCommand();        
+        List<PodaciDetalji> sviPodaci = new List<PodaciDetalji>();
+        List<PodaciDetalji> sviPodaci06 = new List<PodaciDetalji>();
+
 
         public DataTable NapuniGrid()
         {
@@ -66,6 +69,70 @@ namespace WebTableti.Models
             return dtPodaci;
         }
 
+
+        //Za prikaz 2 modela na View Details.cshtml
+        public List<PodaciDetalji> sviDetalji(int kod ) 
+        {
+            DataTable dtPovijest = new DataTable();
+            using (conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                cmd = new SqlCommand("Select * from NF_Tracc_fermi_96ore where MachCode = @code order by DateRec desc", conn);
+                cmd.Parameters.AddWithValue("@code", kod);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtPovijest);
+            }
+
+            foreach (DataRow pod in dtPovijest.Rows)
+            {
+                PodaciDetalji detaljiSve = new PodaciDetalji();
+
+                detaljiSve.datum = Convert.ToDateTime(pod["DateRec"]);
+                detaljiSve.kodMasine = Convert.ToInt32(pod["MachCode"]);
+                detaljiSve.stopKod = Convert.ToInt32(pod["StopCode"]);
+                detaljiSve.poruka = pod["Text"].ToString();
+                detaljiSve.User = pod["UserCode"].ToString();
+                detaljiSve.Shift = Convert.ToInt32(pod["Shift"]);
+
+                sviPodaci.Add(detaljiSve);            
+            }
+           
+            return sviPodaci;
+            
+        }
+
+
+        public List<PodaciDetalji> sviDetalji06(string linija)
+        {
+            DataTable dtPovijest06 = new DataTable();
+            using (conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                cmd = new SqlCommand("select * from MZD_Tracc_fermi_50006_120ore where RoomCode = @linija", conn);
+                cmd.Parameters.AddWithValue("@linija", linija);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtPovijest06);
+            }
+
+            foreach (DataRow pod06 in dtPovijest06.Rows)
+            {
+                PodaciDetalji detaljiSve06 = new PodaciDetalji();
+
+                detaljiSve06.datum = Convert.ToDateTime(pod06["DateRec"]);
+                detaljiSve06.kodMasine = Convert.ToInt32(pod06["MachCode"]);
+                detaljiSve06.stopKod = Convert.ToInt32(pod06["StopCode"]);
+                detaljiSve06.poruka = pod06["Text"].ToString();
+                detaljiSve06.User = pod06["UserCode"].ToString();
+
+                sviPodaci06.Add(detaljiSve06);
+            }
+
+
+            return sviPodaci06;
+
+        }
+
+        //------------------------------------------------------------------------------------
 
         public DataTable NapuniGridPoLinijiGrupa1(int linija)
         {
