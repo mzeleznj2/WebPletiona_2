@@ -100,6 +100,9 @@
 
 
         @{
+            int brojMasine = 0;
+            string linijaZaDetalje = TempData["linija"].ToString();
+
             if (Model.Rows.Count > 0)
             {
                 <table class="table table-bordered table-hover" border="1">
@@ -269,6 +272,10 @@
             }
             else
             {
+    <button type="button" class="btn btn-info" onclick="location.href='@(Url.Action("Details", "Home", new { kod = brojMasine, linija = linijaZaDetalje }))'">
+        Povijest 50006
+    </button>
+                <br />
                 <span> Nema podataka za prikaz!!</span>
             }
         }

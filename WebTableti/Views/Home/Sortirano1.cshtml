@@ -20,10 +20,12 @@
             background-color: firebrick;
             color: white;
         }
+
         .fermo {
             background-color: deeppink;
             color: white;
         }
+
         .fermo07 {
             background-color: yellow;
             color: black;
@@ -32,37 +34,46 @@
         .linija1 {
             background-color: blueviolet;
         }
+
         .linija2 {
             background-color: darkorange;
         }
+
         .linija3 {
             background-color: chartreuse;
         }
+
         .linija4 {
             background-color: darkcyan;
         }
+
         .linija5 {
             background-color: deeppink;
         }
+
         .linija6 {
             background-color: forestgreen;
         }
+
         .linija7 {
             background-color: khaki;
         }
+
         .linija8 {
             background-color: lightpink;
         }
+
         .linija9 {
             background-color: olive;
         }
+
         .linija20 {
             background-color: hotpink;
         }
+
         .linija21 {
             background-color: SteelBlue
         }
-
     </style>
 
 </head>
@@ -100,6 +111,10 @@
 
 
         @{
+            int brojMasine = 0;
+            string linijaZaDetalje = TempData["linija"].ToString();
+
+    
             if (Model.Rows.Count > 0)
             {
                 <table class="table table-bordered table-hover" border="1">
@@ -128,7 +143,8 @@
                     </thead>
                     @foreach (DataRow dr in Model.Rows)
                     {
-                        @*<tr id="redak" border="1" onclick="location.href = '@(Url.Action("Details", "Home", new { kod = @dr["MachCode"] }))'">*@
+                    
+
                         <tr>
                             @{
                                 string boja;
@@ -193,6 +209,8 @@
                                 {
                                     boja = "";
                                 }
+
+
                             }
 
                             <td class=@boja>
@@ -269,6 +287,10 @@
             }
             else
             {
+                <button type="button" class="btn btn-info" onclick="location.href='@(Url.Action("Details", "Home", new { kod = brojMasine, linija = linijaZaDetalje }))'">
+                    Povijest 50006
+                </button>
+                <br />
                 <span> Nema podataka za prikaz!!</span>
             }
         }

@@ -13,6 +13,7 @@ namespace WebTableti.Models
         public string poruka { get; set; }
         public string User { get; set; }
         public int Shift { get; set; }
+        public string styleKod { get; set; }
 
 
     }

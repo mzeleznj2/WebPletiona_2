@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Helpers;
 using System.Web.Mvc;
 
@@ -108,26 +109,60 @@ namespace WebTableti.Models
             using (conn = new SqlConnection(connString))
             {
                 conn.Open();
-                cmd = new SqlCommand("select * from MZD_Tracc_fermi_50006_120ore where RoomCode = @linija", conn);
+                cmd = new SqlCommand("select * from MZD_Tracc_fermi_50006_120ore where RoomCode = @linija order by DateRec", conn);
                 cmd.Parameters.AddWithValue("@linija", linija);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dtPovijest06);
             }
 
+            DataTable dtPovijest0600 = new DataTable();
+            using (conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                cmd = new SqlCommand("select * from MZD_Tracc_Fermi_nula50006_120ore where RoomCode = @linija and StopCode = 0 order by DateRec", conn);
+                cmd.Parameters.AddWithValue("@linija", linija);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtPovijest0600);
+            }
+
+
+
             foreach (DataRow pod06 in dtPovijest06.Rows)
             {
                 PodaciDetalji detaljiSve06 = new PodaciDetalji();
+                int brojac = 0;
 
                 detaljiSve06.datum = Convert.ToDateTime(pod06["DateRec"]);
                 detaljiSve06.kodMasine = Convert.ToInt32(pod06["MachCode"]);
                 detaljiSve06.stopKod = Convert.ToInt32(pod06["StopCode"]);
                 detaljiSve06.poruka = pod06["Text"].ToString();
                 detaljiSve06.User = pod06["UserCode"].ToString();
-
                 sviPodaci06.Add(detaljiSve06);
+
+                foreach (DataRow pod0600 in dtPovijest0600.Rows)
+                {                    
+
+                    if (brojac == 0 && Convert.ToInt32(pod06["MachCode"]) == Convert.ToInt32(pod0600["MachCode"]) &&
+                             pod06["StyleCode"].ToString() == pod0600["StyleCode"].ToString() &&
+                             Convert.ToDateTime(pod06["DateRec"]) < Convert.ToDateTime(pod0600["DateRec"]))
+                    {                     
+                        PodaciDetalji detaljiSve00 = new PodaciDetalji();
+
+                        detaljiSve00.datum = Convert.ToDateTime(pod0600["DateRec"]);
+                        detaljiSve00.kodMasine = Convert.ToInt32(pod0600["MachCode"]);
+                        detaljiSve00.stopKod = Convert.ToInt32(pod0600["StopCode"]);
+                        detaljiSve00.poruka = pod0600["Text"].ToString();
+                        detaljiSve00.User = pod0600["UserCode"].ToString();
+
+                        sviPodaci06.Add(detaljiSve00);
+                        brojac++;
+                    }
+                }
+
+               
             }
 
-
+            
             return sviPodaci06;
 
         }

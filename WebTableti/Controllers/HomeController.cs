@@ -163,22 +163,22 @@ namespace WebTableti.Controllers
 
 
         //STARO
-        public ActionResult DetailsOld(int kod, string linija)
-        {
-            DataTable dtPovijest = new DataTable();
-            using (conn = new SqlConnection(connString))
-            {
-                conn.Open();
-                cmd = new SqlCommand("Select * from NF_Tracc_fermi_96ore where MachCode = @code order by DateRec desc", conn);
-                cmd.Parameters.AddWithValue("@code", kod);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(dtPovijest);
-            }
+        //public ActionResult DetailsOld(int kod, string linija)
+        //{
+        //    DataTable dtPovijest = new DataTable();
+        //    using (conn = new SqlConnection(connString))
+        //    {
+        //        conn.Open();
+        //        cmd = new SqlCommand("Select * from NF_Tracc_fermi_96ore where MachCode = @code order by DateRec desc", conn);
+        //        cmd.Parameters.AddWithValue("@code", kod);
+        //        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+        //        adapter.Fill(dtPovijest);
+        //    }
 
-            ViewBag.Data = kod;
+        //    ViewBag.Data = kod;
 
-            return View("Details", dtPovijest);
-        }
+        //    return View("Details", dtPovijest);
+        //}
 
 
         //2 view-a u 1
@@ -200,8 +200,8 @@ namespace WebTableti.Controllers
         //Grupa 1
         public ActionResult ChangeStatus(string kod, int zastavica)
         {
-            int linija = Convert.ToInt32(TempData["linija"]);
 
+            int linija = Convert.ToInt32(TempData["linija"]);
             using (var context = new dbNautilusEntities1())
             {
                 if (context.TUBLAFermi.Any(o => o.UniqueID == kod))
@@ -221,7 +221,7 @@ namespace WebTableti.Controllers
                     context.SaveChanges();
                 }
             }
-           
+         
 
             if (zastavica > 0)
             {
@@ -368,6 +368,7 @@ namespace WebTableti.Controllers
         //Grupa 1 filtriranje
         public ActionResult Sortirano1(int linija)
         {
+
             Podaci podaci = new Podaci();
             DataTable dtPodaci = podaci.NapuniGridPoLinijiGrupa1(linija);
 
@@ -402,7 +403,8 @@ namespace WebTableti.Controllers
             ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
             ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
 
-            TempData["linija"] = linija;
+            string linijaFull = "LINEA-" + linija.ToString();
+            TempData["linija"] = linijaFull;
 
            
             return View("Sortirano1", dtPodaci);
@@ -445,7 +447,8 @@ namespace WebTableti.Controllers
             ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
             ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
 
-            TempData["linija"] = linija;
+            string linijaFull = "LINEA-" + linija.ToString();
+            TempData["linija"] = linijaFull;
 
             return View("Sortirano2", dtPodaci);
         }
@@ -487,7 +490,8 @@ namespace WebTableti.Controllers
             ViewBag.Brojac7 = Convert.ToInt32(brojac7.FirstOrDefault());
             ViewBag.Brojac8 = Convert.ToInt32(brojac8.FirstOrDefault());
 
-            TempData["linija"] = linija;
+            string linijaFull = "LINEA-" + linija.ToString();
+            TempData["linija"] = linijaFull;
 
             return View("Sortirano3", dtPodaci);
         }
